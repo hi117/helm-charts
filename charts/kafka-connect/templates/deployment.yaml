@@ -21,7 +21,7 @@ spec:
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       imagePullSecrets:
-        {{- toYaml . | nindent 8 }}
+        {{- toYaml . | nindent 10 }}
       containers:
         - name: {{ .Chart.Name }}
         {{- with .Values.imagePullSecrets }}
