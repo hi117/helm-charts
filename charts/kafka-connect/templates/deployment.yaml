@@ -20,11 +20,11 @@ spec:
     spec:
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
       containers:
         - name: {{ .Chart.Name }}
         {{- with .Values.imagePullSecrets }}
-          imagePullSecrets:
-          {{- toYaml . | nindent 10 }}
         {{- end }}
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           image: "{{ .Values.image.registry }}/{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
